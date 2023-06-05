@@ -10,10 +10,11 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "cases_deaths.csv",
+				"fileName": "population_by_age.tsv.gz",
 				"container": "gopishettysource"
 			},
 			"columnDelimiter": ",",
+			"compressionCodec": "gzip",
 			"escapeChar": "\\",
 			"quoteChar": "\""
 		},
