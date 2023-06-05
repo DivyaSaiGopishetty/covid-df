@@ -13,6 +13,9 @@
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://gopishettydatalake.dfs.core.windows.net/"
+		},
+		"HttpServer1_properties_typeProperties_url": {
+			"value": "@{linkedService().sourcebaseurl}"
 		}
 	}
 }
