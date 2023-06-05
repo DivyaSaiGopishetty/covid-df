@@ -220,7 +220,18 @@
 					"referenceName": "HttpServer1",
 					"type": "LinkedServiceReference",
 					"parameters": {
-						"sourcebaseurl": "https://raw.githubusercontent.com"
+						"sourcebaseurl": {
+							"value": "@dataset().SENDER",
+							"type": "Expression"
+						}
+					}
+				},
+				"parameters": {
+					"SENDER": {
+						"type": "string"
+					},
+					"CLIENT": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
@@ -228,7 +239,10 @@
 				"typeProperties": {
 					"location": {
 						"type": "HttpServerLocation",
-						"relativeUrl": "cloudboxacademy/covid19/main/ecdc_data/cases_deaths.csv"
+						"relativeUrl": {
+							"value": "@dataset().CLIENT",
+							"type": "Expression"
+						}
 					},
 					"columnDelimiter": ",",
 					"escapeChar": "\\",
@@ -250,12 +264,20 @@
 					"referenceName": "AzureDataLakeStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"FILENAME": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "cases_deaths.csv",
+						"fileName": {
+							"value": "@dataset().FILENAME",
+							"type": "Expression"
+						},
 						"folderPath": "httpdestination",
 						"fileSystem": "gopishettydestination"
 					},
@@ -324,14 +346,28 @@
 							{
 								"referenceName": "httpsource",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"SENDER": {
+										"value": "@pipeline().parameters.sender",
+										"type": "Expression"
+									},
+									"CLIENT": {
+										"value": "@pipeline().parameters.client",
+										"type": "Expression"
+									}
+								}
 							}
 						],
 						"outputs": [
 							{
-								"referenceName": "gopishettydestination",
+								"referenceName": "httpsdestination",
 								"type": "DatasetReference",
-								"parameters": {}
+								"parameters": {
+									"FILENAME": {
+										"value": "@pipeline().parameters.file",
+										"type": "Expression"
+									}
+								}
 							}
 						]
 					}
@@ -340,11 +376,22 @@
 					"elapsedTimeMetric": {},
 					"cancelAfter": {}
 				},
+				"parameters": {
+					"sender": {
+						"type": "String"
+					},
+					"client": {
+						"type": "String"
+					},
+					"file": {
+						"type": "String"
+					}
+				},
 				"annotations": []
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/httpsource')]",
-				"[concat(variables('factoryId'), '/datasets/gopishettydestination')]"
+				"[concat(variables('factoryId'), '/datasets/httpsdestination')]"
 			]
 		}
 	]
