@@ -49,17 +49,44 @@
 				"inputs": [
 					{
 						"referenceName": "httpsource",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"SENDER": {
+								"value": "@pipeline().parameters.sender",
+								"type": "Expression"
+							},
+							"CLIENT": {
+								"value": "@pipeline().parameters.client",
+								"type": "Expression"
+							}
+						}
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "gopishettydestination",
-						"type": "DatasetReference"
+						"referenceName": "httpsdestination",
+						"type": "DatasetReference",
+						"parameters": {
+							"FILENAME": {
+								"value": "@pipeline().parameters.file",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
+		"parameters": {
+			"sender": {
+				"type": "String"
+			},
+			"client": {
+				"type": "String"
+			},
+			"file": {
+				"type": "String"
+			}
+		},
 		"annotations": []
 	}
 }
