@@ -1,0 +1,9 @@
+{
+	"name": "gopishettydf",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a4eac03a-486c-4cb9-ab84-b2c54d4e4f67",
+		"tenantId": "a837db11-0fef-410a-868c-4236e00aba01"
+	}
+}
