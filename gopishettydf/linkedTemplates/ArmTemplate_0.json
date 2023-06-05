@@ -95,10 +95,11 @@
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": "cases_deaths.csv",
+						"fileName": "population_by_age.tsv.gz",
 						"container": "gopishettysource"
 					},
 					"columnDelimiter": ",",
+					"compressionCodec": "gzip",
 					"escapeChar": "\\",
 					"quoteChar": "\""
 				},
@@ -115,7 +116,7 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "Copy data1",
+						"name": "Copy data2",
 						"type": "Copy",
 						"dependsOn": [],
 						"policy": {
